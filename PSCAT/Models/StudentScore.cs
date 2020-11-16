@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace PSCAT.Models
 {
-    public class StudentScore
+    [Table("StudentScores")]
+    public partial class StudentScore
     {
-        [Required]
+        [Column("StudentID", Order = 1, TypeName = "nchar(10)")]
         public string StudentID { get; set; }
 
-        [Required]
+        [Column("TestID", Order = 2, TypeName = "nchar(10)")]
         public string TestID { get; set; }
 
-        [Required]
         [Display(Name = "Score")]
-        public bool MarksScored { get; set; }
+        [Column("MarksScored", Order = 3, TypeName = "numeric(18,0)")]
+        public int MarksScored { get; set; }
     }
 }

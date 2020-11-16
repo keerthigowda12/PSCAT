@@ -42,7 +42,7 @@ namespace PSCAT.Controllers
             }
             else
             {
-                return Redirect("~/UserHomePage/UserPage");
+                return Redirect("~/Students/Dashboard");
             }
 
 

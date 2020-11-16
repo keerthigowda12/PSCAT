@@ -1,0 +1,34 @@
+﻿@model StudentDashboardViewModel
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "_StudentLayout";
+}
+
+<h1 class="row justify-content-center"> Dashboard </h1>
+<br />
+<br />
+
+<div class="row justify-content-center" style="border:groove">
+    <table>
+        <tr>
+            <th>Test Name</th>
+            <th>Course</th>
+            <th>Marks Obtained</th>
+            <th>Maximum Marks</th>
+            <th>Pass/Fail</th>
+        </tr>
+        @foreach (var test in Model.TestDetail)
+        {
+            <tr>
+                <td><a asp-controller="Students" asp-action="TestDetails" asp-route-studentId =@Model.StudentId asp-route-testId =@test.TestId asp-route-courseId =@test.CourseId>
+                    @test.TestName</a>
+                </td>
+                <td>@test.Course</td>
+                <td>@test.Marks</td>
+                <td>@test.MaxMarks</td>
+                <td>@test.PassOrFail</td>
+            </tr>
+        }
+    </table>
+</div>
