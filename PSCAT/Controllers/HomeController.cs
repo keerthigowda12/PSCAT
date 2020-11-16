@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PSCAT.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,11 +15,15 @@ namespace PSCAT.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IConfiguration _configuration;
 
-        public HomeController(ILogger<HomeController> logger)
+        public object Db { get; private set; }
+
+        public HomeController(IConfiguration configuration)
         {
-            _logger = logger;
+            _configuration = configuration;
         }
+       
 
         public IActionResult Index()
         {
@@ -26,7 +33,10 @@ namespace PSCAT.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel viewModel)
         {
-            if (viewModel.User == "admin")
+            //connection string
+            string myDb1ConnectionString = _configuration.GetConnectionString("myConn");
+            GetData();
+            if (viewModel.User.StartsWith("admin"))
             {
                  //Redirect("~/Home/TeacherPD");
             }
@@ -36,6 +46,33 @@ namespace PSCAT.Controllers
             }
 
             return (IActionResult)viewModel;
+        }
+
+        public DataTable GetData()
+        {//connection string
+            string myConn = _configuration.GetConnectionString("myConn");
+            string str = "select LoginID, Password, UserType from Login";
+            DataTable objresutl = new DataTable();
+            try
+            {
+                SqlDataReader myReader;
+
+                using (SqlConnection myCon = new SqlConnection(_configuration.GetConnectionString("myConn")))
+                {
+                    myCon.Open();
+                    using (SqlCommand myCommand = new SqlCommand(str, myCon))
+                    {
+                        myReader = myCommand.ExecuteReader();
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return objresutl;
+
         }
         public IActionResult Privacy()
         {
