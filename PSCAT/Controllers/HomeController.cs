@@ -23,29 +23,29 @@ namespace PSCAT.Controllers
         {
             _configuration = configuration;
         }
-       
+
 
         public IActionResult Index()
         {
             return View();
         }
-       
-        [HttpPost]
-        public IActionResult Login(LoginViewModel viewModel)
+
+
+        public RedirectResult Login(LoginViewModel viewModel)
         {
             //connection string
             string myDb1ConnectionString = _configuration.GetConnectionString("myConn");
             GetData();
             if (viewModel.User.StartsWith("admin"))
             {
-                 //Redirect("~/Home/TeacherPD");
+                return Redirect("~/StaffHomePage/StaffPage");
             }
             else
             {
-                //Redirect("~/Home/TeacherPD");
+                return Redirect("~/UserHomePage/UserPage");
             }
 
-            return (IActionResult)viewModel;
+
         }
 
         public DataTable GetData()
@@ -63,7 +63,7 @@ namespace PSCAT.Controllers
                     using (SqlCommand myCommand = new SqlCommand(str, myCon))
                     {
                         myReader = myCommand.ExecuteReader();
-                        
+
                     }
                 }
             }
