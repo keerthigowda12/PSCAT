@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PSCAT.Models;
+using PSCAT.ViewModels;
 using PSCAT.Data;
 
 namespace PSCAT.Controllers
@@ -59,7 +60,35 @@ namespace PSCAT.Controllers
 
         public IActionResult Tests()
         {
-            return View();
+            List<StudentTestStatus> pendingTests = _context.StudentTestStatus.Where(s=>s.Completed == "N" && s.StudentId == "student1").ToList();
+
+            TestStatusViewModel pendingTestCompleteDetails = new TestStatusViewModel();
+
+            foreach(var rec in pendingTests)
+            {
+                var det = _context.Tests.Where(s=> s.TestID == rec.TestId && s.StaffID == rec.StaffId && s.CourseID == rec.CourseId).FirstOrDefault();
+
+                var courseDet = _context.StaffCourses.Where(s=>s.CourseID == rec.CourseId && s.StaffID == rec.StaffId).FirstOrDefault();
+
+                var staffDet = _context.Staff.Where(s=>s.StaffID == rec.StaffId).FirstOrDefault();
+
+                StudentTestStatusRecord temp = new StudentTestStatusRecord();
+                temp.CourseId = det.CourseID;
+                temp.CourseName = courseDet.CourseName;
+                temp.StaffId = det.StaffID;
+                temp.StaffName = staffDet.StaffName;
+                temp.StudentId = rec.StudentId;
+                temp.Completed = rec.Completed;
+                temp.TestId = rec.TestId;
+                temp.TestName = det.TestName;
+
+
+
+                pendingTestCompleteDetails.StudentTestStatusRecord.Add(temp);
+            }
+
+
+            return View(pendingTestCompleteDetails);
         }
         public IActionResult ImproveMe()
         {

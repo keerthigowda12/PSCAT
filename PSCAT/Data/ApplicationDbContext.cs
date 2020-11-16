@@ -17,12 +17,18 @@ namespace PSCAT.Data
         public DbSet<StudentScore> StudentScores { get; set; }
         public DbSet<Tests> Tests { get; set; }
         public DbSet<StudentTestRecords> StudentTestRecords { get; set; }
+        public DbSet<StudentTestStatus> StudentTestStatus { get; set; }
+        public DbSet<StaffCourses> StaffCourses { get; set; }
+        public DbSet<Staff> Staff { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<StudentScore>().HasKey(key => new { key.StudentID, key.TestID });
             modelBuilder.Entity<Tests>().HasKey(key => new { key.TestID, key.CourseID, key.StaffID });
             modelBuilder.Entity<StudentTestRecords>().HasKey(key => new { key.StudentId, key.TestId, key.CourseId, key.QuestionId });
+            modelBuilder.Entity<StudentTestStatus>().HasKey(key => new { key.StudentId, key.TestId, key.CourseId, key.StaffId });
+            modelBuilder.Entity<StaffCourses>().HasKey(key => new { key.CourseID, key.StaffID });
+            modelBuilder.Entity<Staff>().HasKey(key => new { key.StaffID });
 
             base.OnModelCreating(modelBuilder);
         }
