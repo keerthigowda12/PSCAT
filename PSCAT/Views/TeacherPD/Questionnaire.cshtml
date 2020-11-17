@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "_TeacherLayout";
+}
+
+@model PSCAT.Models.QuestionAns;
+<div class="row justify-content-md-start">
+
+    <div class="col-mid-12">
+        @using (Html.BeginForm("QuestionAnsSub", "TeacherPD", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.Label("Courses")&nbsp;&nbsp;
+                @Html.DropDownListFor(m => m.course, new SelectList(Model.staffcourses, "CourseID", "CourseName"), "---------------")
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.question)
+                @Html.TextBoxFor(m => m.question, new { @Value = "Entery question" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.choice1) &nbsp;&nbsp;
+                @Html.TextBoxFor(m => m.choice1, new { @Value = "First option" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Other Choices:")<br>
+                @Html.LabelFor(m => m.choice2)
+                @Html.TextBoxFor(m => m.choice2, new { @Value = "Second option" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.choice3)
+                @Html.TextBoxFor(m => m.choice3, new { @Value = "Third option" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.choice4)
+                @Html.TextBoxFor(m => m.choice4, new { @Value = "Fourth option" })
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(m => m.complexity, new SelectList(Enum.GetValues(typeof(Complexity))), "Select Complexity")
+            </div>
+            <div class="form-group">
+                <input type="submit" name="submit" value="submit" />
+            </div>
+
+        }
+    </div>
+</div>
