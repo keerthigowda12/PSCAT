@@ -1,0 +1,30 @@
+﻿@model IEnumerable<PSCAT.Models.Questionaire>
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+
+
+@foreach (var item in Model)
+{
+    int count = 1;
+    String question = "Question: " + count.ToString() + "  -  ";
+    count++;
+<form method="post" >
+    @Html.Label(question)
+    @Html.DisplayFor(modelItem => item.Question)
+    <br />
+    @Html.RadioButton("Choice1", item.Choice1)
+    @Html.DisplayFor(modelItem => item.Choice1)
+    <br />
+    @Html.RadioButton("Choice2", item.Choice2)
+    @Html.DisplayFor(modelItem => item.Choice2)
+    <br />
+    @Html.RadioButton("Choice3", item.Choice3)
+    @Html.DisplayFor(modelItem => item.Choice3)
+    <br />
+    @Html.RadioButton("Choice4", item.Choice4)
+    @Html.DisplayFor(modelItem => item.Choice4)
+</form>
+
+    <br />
+}

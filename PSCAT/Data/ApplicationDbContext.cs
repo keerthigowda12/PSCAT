@@ -20,6 +20,7 @@ namespace PSCAT.Data
         public DbSet<StudentTestStatus> StudentTestStatus { get; set; }
         public DbSet<StaffCourses> StaffCourses { get; set; }
         public DbSet<Staff> Staff { get; set; }
+        public DbSet<Questionaire> Questionaire { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +30,7 @@ namespace PSCAT.Data
             modelBuilder.Entity<StudentTestStatus>().HasKey(key => new { key.StudentId, key.TestId, key.CourseId, key.StaffId });
             modelBuilder.Entity<StaffCourses>().HasKey(key => new { key.CourseID, key.StaffID });
             modelBuilder.Entity<Staff>().HasKey(key => new { key.StaffID });
+            modelBuilder.Entity<Questionaire>().HasKey(key => new { key.TestID,key.QuestionID });
 
             base.OnModelCreating(modelBuilder);
         }

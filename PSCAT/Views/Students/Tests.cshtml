@@ -15,21 +15,23 @@
             <th>Course</th>
             <th>Status</th>
             <th></th>
-            
+
         </tr>
         @foreach (var test in Model.StudentTestStatusRecord)
         {
-    <tr>
-        @*<td>
-            <a asp-controller="Students" asp-action="TestDetails" asp-route-studentId=@Model.StudentId asp-route-testId=@test.TestId asp-route-courseId=@test.CourseId>
-                @test.TestName
-            </a>
-        </td>*@
-        <td>@test.TestName</td>
-        <td>@test.CourseName</td>
-        <td>@test.Completed</td>
-        <td><button>Start Test</button></td>
-    </tr>
+            <tr>
+                <td>@test.TestName</td>
+                <td>@test.CourseName</td>
+                <td>@test.Completed</td>
+                <td>
+                    <form method="post" asp-controller="Tests" asp-action="StartTest" asp-route-studentId=@test.StudentId
+                                asp-route-testId=@test.TestId asp-route-courseId=@test.CourseId asp-route-staffId=@test.StaffId>
+                        <button type="submit" class="btn btn-success" >
+                            Start Test
+                        </button>
+                    </form>
+                </td>
+            </tr>
         }
     </table>
 </div>
