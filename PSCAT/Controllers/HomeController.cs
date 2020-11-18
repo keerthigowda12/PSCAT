@@ -40,6 +40,8 @@ namespace PSCAT.Controllers
             {
                 return Redirect("~/StaffHomePage/StaffPage");
             }
+            else if(viewModel.User.StartsWith("teacher"))
+                return Redirect("~/TeacherPD/TeacherPD");
             else
             {
                 return Redirect("~/Students/Dashboard");

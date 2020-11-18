@@ -30,7 +30,7 @@ namespace PSCAT.Data
             modelBuilder.Entity<StudentTestStatus>().HasKey(key => new { key.StudentId, key.TestId, key.CourseId, key.StaffId });
             modelBuilder.Entity<StaffCourses>().HasKey(key => new { key.CourseID, key.StaffID });
             modelBuilder.Entity<Staff>().HasKey(key => new { key.StaffID });
-            modelBuilder.Entity<Questionaire>().HasKey(key => new { key.TestID,key.QuestionID });
+            modelBuilder.Entity<Questionaire>().HasKey(key => new { key.CourseID,key.QuestionID });
 
             base.OnModelCreating(modelBuilder);
         }

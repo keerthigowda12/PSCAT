@@ -13,7 +13,7 @@ namespace PSCAT.Models
         public string CourseID { get; set; }
 
         [Column("QuestionID")]
-        public string QuestionID { get; set; }
+        public int QuestionID { get; set; }
 
         [Column("Question")]
         public string Question { get; set; }

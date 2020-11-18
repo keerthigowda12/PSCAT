@@ -10,18 +10,20 @@ namespace PSCAT.Services
 {
     public class DBUtil
     {
-        private static readonly IConfiguration _configuration;
-        private static SqlConnection con;
+        private static  IConfiguration _configuration;
+        private static SqlConnection con= new SqlConnection(_configuration.GetConnectionString("myConn"));
         private static SqlCommand scmd;
 
-        static DBUtil()
+         public  DBUtil(IConfiguration configuration) 
         {
-            con = new SqlConnection(_configuration.GetConnectionString("myConn"));
+            _configuration = configuration;
         }
 
         public static int SaveDetails(string query)
         {
             scmd = new SqlCommand(query, con);
+            if(con==null)
+                con = new SqlConnection(_configuration.GetConnectionString("myConn"));
             con.Open();
             int i = scmd.ExecuteNonQuery();
             con.Close();

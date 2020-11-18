@@ -3,41 +3,43 @@
 }
 
 @model PSCAT.Models.QuestionAns;
-<div class="row justify-content-md-start">
+<div class="row justify-content-md-start d-flex">
 
-    <div class="col-mid-12">
+    <div class="col-mid-12 d-flex w-100 justify-content-center" border="thick solid #0000FF" style="background-color:burlywood">
         @using (Html.BeginForm("QuestionAnsSub", "TeacherPD", FormMethod.Post))
         {
-            <div class="form-group">
-                @Html.Label("Courses")&nbsp;&nbsp;
-                @Html.DropDownListFor(m => m.course, new SelectList(Model.staffcourses, "CourseID", "CourseName"), "---------------")
+            <br />
+            <div class="form-group " style="font-size:large;font-weight:600;color:white;">
+                @Html.Label("Courses")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                @Html.DropDownListFor(m => m.course, new SelectList(Model.staffcourses, "CourseID", "CourseName"), "-----------------------------------", new { style = "border:none;outline:none;border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;" })
+            </div><br />
+                  <div class="form-group " style="font-size:large;font-weight:600;color:white;">
+                      @Html.LabelFor(m => m.question)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      @Html.TextBoxFor(m => m.question, new { @Value = "Entery question", @style = "width:750px;border:none;outline:none;border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;" })
+                  </div>
+                  <div class="form-group  " style="font-size:large;font-weight:600;color:white;">
+                      @Html.LabelFor(m => m.choice1) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      @Html.TextBoxFor(m => m.choice1, new { @Value = "First option", @style = "width:750px;border:none;outline:none;border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;" })
+                  </div>
+            <div style="font-size:large;font-weight:800;color:white;">@Html.Label("Other Choices:")</div><br>
+            <div class="form-group " style="font-size:large;font-weight:600;color:white;">
+                @Html.LabelFor(m => m.choice2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                @Html.TextBoxFor(m => m.choice2, new { @Value = "Second option", @style= "width:750px;border:none;outline:none;border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;" })
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.question)
-                @Html.TextBoxFor(m => m.question, new { @Value = "Entery question" })
+            <div class="form-group " style="font-size:large;font-weight:600;color:white;">
+                @Html.LabelFor(m => m.choice3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                @Html.TextBoxFor(m => m.choice3, new { @Value = "Third option", @style = "width:750px;border:none;outline:none;border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;" })
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.choice1) &nbsp;&nbsp;
-                @Html.TextBoxFor(m => m.choice1, new { @Value = "First option" })
-            </div>
-            <div class="form-group">
-                @Html.Label("Other Choices:")<br>
-                @Html.LabelFor(m => m.choice2)
-                @Html.TextBoxFor(m => m.choice2, new { @Value = "Second option" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.choice3)
-                @Html.TextBoxFor(m => m.choice3, new { @Value = "Third option" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.choice4)
-                @Html.TextBoxFor(m => m.choice4, new { @Value = "Fourth option" })
-            </div>
-            <div class="form-group">
-                @Html.DropDownListFor(m => m.complexity, new SelectList(Enum.GetValues(typeof(Complexity))), "Select Complexity")
-            </div>
-            <div class="form-group">
-                <input type="submit" name="submit" value="submit" />
+            <div class="form-group " style="font-size:large;font-weight:600;color:white;">
+                @Html.LabelFor(m => m.choice4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                @Html.TextBoxFor(m => m.choice4, new { @Value = "Fourth option", @style = "width:750px;border:none;outline:none;border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;" })
+            </div><br />
+                  <div class="form-group" style="font-size:large;font-weight:600;color:white;">
+                      @Html.Label("Complexity")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      @Html.DropDownListFor(m => m.complexity, new SelectList(Enum.GetValues(typeof(Complexity))), "-----------------------------------", new { style = "border:none;outline:none;border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;" })
+                  </div><br />
+            <div class="form-group justify-content-md-center">
+                <input type="submit" name="submit" value="submit" style="font-size:large;font-weight:bold;margin-left:50%;border:none;outline:none;border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;"/>
             </div>
 
         }

@@ -36,13 +36,15 @@ namespace PSCAT.Controllers
         }
         public IActionResult QuestionAnsSub(QuestionAns qAns)
         {
-            tps = new TeacherPD();
+            tps = new TeacherPD(_context);
 
-             Boolean saveStatus= tps.saveQuestion(qAns);
-             if (saveStatus == true)
-                 return View("success");
-             else
-                 return View("failToSave"); 
+            Boolean saveStatus= tps.saveQuestion(qAns);
+            if (saveStatus == true)
+                return View("success");
+            else
+                return View("failToSave"); 
+            
+            return View("success");
 
         }
 
